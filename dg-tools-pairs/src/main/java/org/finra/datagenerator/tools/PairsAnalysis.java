@@ -115,6 +115,8 @@ public class PairsAnalysis {
 	}
 
 	private static boolean checkPair(Map<Integer, String> currentLineData) {
+//		Map<Integer, String> allPairsToRemove = new HashMap<Integer, String>();
+		List<Map<Integer, String>> allPairsToRemove = new ArrayList<Map<Integer, String>>();
 		for (Map<Integer, String> allPairsCurrent : allPairs) {
 			// System.out.println("allPairsCurrent" + allPairsCurrent + "; currentLineData = " + currentLineData);
 			boolean isAllMatch = true;
@@ -125,13 +127,17 @@ public class PairsAnalysis {
 			}
 			if (isAllMatch) {
 				// System.out.println("Combination '" + allPairsCurrent + "' is found! Let's remove it from list... ");
-				allPairs.remove(allPairsCurrent);
-				if (allPairs.isEmpty()) {
-					System.out.println("Cool! We find all necessary pairs combinations! It takes '" + lineNumber + "' data lines...");
-					return true;
-				} else {
-					return false;
-				}
+				allPairsToRemove.add(allPairsCurrent);
+			}
+		}
+		
+		if (!allPairsToRemove.isEmpty()) {
+			allPairs.removeAll(allPairsToRemove);
+			if (allPairs.isEmpty()) {
+				System.out.println("Cool! We find all necessary pairs combinations! It takes '" + lineNumber + "' data lines...");
+				return true;
+			} else {
+				return false;
 			}
 		}
 		return false;
