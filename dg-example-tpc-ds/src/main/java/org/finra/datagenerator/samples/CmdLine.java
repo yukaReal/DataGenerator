@@ -22,10 +22,10 @@ import java.io.InputStream;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.finra.datagenerator.consumer.DataConsumer;
 import org.finra.datagenerator.distributor.multithreaded.DefaultDistributor;
 import org.finra.datagenerator.engine.Engine;
 import org.finra.datagenerator.engine.scxml.SCXMLEngine;
+import org.finra.datagenerator.samples.consumer.RepeatingDataConsumer;
 import org.finra.datagenerator.samples.transformer.DBTransformer;
 import org.finra.datagenerator.writer.DefaultWriter;
 
@@ -56,7 +56,8 @@ public final class CmdLine {
         engine.setBootstrapMin(1);
 
         //Prepare the consumer with the proper writer and transformer
-        DataConsumer consumer = new DataConsumer();
+        RepeatingDataConsumer consumer = new RepeatingDataConsumer();
+        consumer.setRepeatNumber(14);
         consumer.addDataTransformer(new DBTransformer());
         
         createNecessaryFolder();
@@ -70,6 +71,7 @@ public final class CmdLine {
             DefaultDistributor defaultDistributor = new DefaultDistributor();
             defaultDistributor.setThreadCount(1);
             defaultDistributor.setDataConsumer(consumer);
+            defaultDistributor.setMaxNumberOfLines(10);
             Logger.getLogger("org.apache").setLevel(Level.WARN);
 
             engine.process(defaultDistributor);

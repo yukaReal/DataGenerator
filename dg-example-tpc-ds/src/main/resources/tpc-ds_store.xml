@@ -34,13 +34,6 @@
         <onentry>
             <assign name="var__s_store_id" expr="%alpha(16)"/>
         </onentry>
-        <transition event="stepMultiplicator" target="stepMultiplicator"/>
-    </state>
-    
-    <state id="stepMultiplicator">
-        <onentry>
-            <assign name="temp" expr="set:{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}"/>
-        </onentry>
         <transition event="end" target="end"/>
     </state>
 
