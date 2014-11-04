@@ -72,6 +72,13 @@ public class DBTransformer extends EquivalenceClassTransformer {
                         log.fatal("Oops! ModelException: " + e);
                     }
                     break;
+                case "date":
+                    try {
+                        result.append(getSequanceValue(expr));
+                    } catch (ModelException e) {
+                        log.fatal("Oops! ModelException: " + e);
+                    }
+                    break;
                 default:
                     result.append(value);
                     break;

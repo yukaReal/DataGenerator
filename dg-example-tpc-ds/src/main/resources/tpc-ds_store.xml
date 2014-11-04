@@ -37,6 +37,20 @@
         <transition event="end" target="end"/>
     </state>
 
+    <state id="s_rec_start_date">
+        <onentry>
+            <assign name="var__s_rec_start_date" expr="%alpha(16)"/>
+        </onentry>
+        <transition event="end" target="end"/>
+    </state>
+
+    <state id="s_rec_end_date">
+        <onentry>
+            <assign name="var__s_rec_end_date" expr="%alpha(16)"/>
+        </onentry>
+        <transition event="end" target="end"/>
+    </state>
+
     <state id="end">
         <!-- We're done -->
     </state>

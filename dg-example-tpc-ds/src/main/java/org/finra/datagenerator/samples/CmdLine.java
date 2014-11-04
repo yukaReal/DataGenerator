@@ -26,7 +26,7 @@ import org.finra.datagenerator.distributor.multithreaded.DefaultDistributor;
 import org.finra.datagenerator.engine.Engine;
 import org.finra.datagenerator.engine.scxml.SCXMLEngine;
 import org.finra.datagenerator.samples.consumer.RepeatingDataConsumer;
-import org.finra.datagenerator.samples.transformer.DBTransformer;
+import org.finra.datagenerator.samples.transformer.tpc_ds.StoreDBTransformer;
 import org.finra.datagenerator.writer.DefaultWriter;
 
 /**
@@ -58,7 +58,7 @@ public final class CmdLine {
         //Prepare the consumer with the proper writer and transformer
         RepeatingDataConsumer consumer = new RepeatingDataConsumer();
         consumer.setRepeatNumber(14);
-        consumer.addDataTransformer(new DBTransformer());
+        consumer.addDataTransformer(new StoreDBTransformer());
         
         createNecessaryFolder();
         File file = new File("results/store.dat");
